@@ -1,0 +1,7 @@
+{
+    "java.dependency.packagePresentation": "flat",
+    "maven.pomfile.autoUpdateEffectivePOM": true,
+    "java.dependency.syncWithFolderExplorer": false,
+    "java.dependency.showOutline": false,
+    "java.configuration.updateBuildConfiguration": "automatic"
+}
