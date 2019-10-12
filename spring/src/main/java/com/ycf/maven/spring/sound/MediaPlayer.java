@@ -6,4 +6,6 @@ package com.ycf.maven.spring.sound;
 public interface MediaPlayer {
 
     void play();
+
+    CompactDisc getCompactDisc();
 }

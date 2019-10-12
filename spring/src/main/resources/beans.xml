@@ -1,13 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="http://www.springframework.org/schema/beans
-    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:c="http://www.springframework.org/schema/c" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd
-    http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
-    <!-- <bean id=" helloWorld" class=" com.tutorialspoint.HelloWorld">
-        <property name=" message" value=" Hello World!" />
-    </bean> -->
-    <!-- <context:component-scan base-package="com.ycf.maven.spring.sound" /> -->
+    http://www.springframework.org/schema/mvc 
+    http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- 没有明确指定id 使用全限定类名进行命名 com.ycf.maven.spring.sound.SgtPeppers#0 -->
+    <!-- <bean class="com.ycf.maven.spring.sound.SgtPeppers" /> -->
+
+    <!-- 没有明确指定id 使用全限定类名进行命名 com.ycf.maven.spring.sound.SgtPeppers#1 -->
+    <!-- <bean class="com.ycf.maven.spring.sound.SgtPeppers" /> -->
+
+    <!-- <bean id="compactDisc" class="com.ycf.maven.spring.sound.SgtPeppers" /> -->
+    <context:component-scan base-package="com.ycf.maven.spring.sound" />
+    
     <!-- <mvc:annotation-driven /> -->
+
+    <!-- <bean id="cdPlayer" class="com.ycf.maven.spring.sound.CDPlayer">
+        <constructor-arg ref="compactDisc"/>
+    </bean> -->
+
+    <!-- 在XML配置中引用JavaConfig -->
+    <!-- <bean class="com.ycf.maven.spring.sound.CDPlayerConfig"/> -->
+    <!-- 设置为首选bean 作用域为原型 -->
+    <!-- <bean id="cdPlayer" class="com.ycf.maven.spring.sound.CDPlayer" c:cd-ref="compactDisc" primary="true" scope="prototype"/> -->
 </beans>
