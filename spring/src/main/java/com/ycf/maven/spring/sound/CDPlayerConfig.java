@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.Profile;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 @Configuration
 @ImportResource("classpath:context.xml")
@@ -18,9 +19,15 @@ import org.springframework.context.annotation.Profile;
 public class CDPlayerConfig {
 
     // @Bean /* 借助JavaConfig实现注入 bean ID默认为方法名*/
-    @Bean("compactDisc")
-    @Profile("dev") //配置类中的bean只有在指定profile激活时才会被创建
+    // @Bean("compactDisc")
+    // @Profile("dev") // 配置类中的bean只有在指定profile激活时才会被创建
     public CompactDisc compactDisc() {
-        return new SgtPeppers();
+        return new SgtPeppers(0);
     }
+
+    //启用xml 解析属性占位符
+    // @Bean
+    // public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+    //     return new PropertySourcesPlaceholderConfigurer();
+    // }
 }

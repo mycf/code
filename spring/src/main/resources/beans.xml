@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:c="http://www.springframework.org/schema/c" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="http://www.springframework.org/schema/beans
+<beans xmlns="http://www.springframework.org/schema/beans" 
+    xmlns:aop="http://www.springframework.org/schema/aop" 
+    xmlns:c="http://www.springframework.org/schema/c" 
+    xmlns:p="http://www.springframework.org/schema/p" 
+    xmlns:mvc="http://www.springframework.org/schema/mvc" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd
     http://www.springframework.org/schema/mvc 
@@ -13,17 +21,29 @@
     <!-- 没有明确指定id 使用全限定类名进行命名 com.ycf.maven.spring.sound.SgtPeppers#1 -->
     <!-- <bean class="com.ycf.maven.spring.sound.SgtPeppers" /> -->
 
-    <!-- <bean id="compactDisc" class="com.ycf.maven.spring.sound.SgtPeppers" /> -->
-    <context:component-scan base-package="com.ycf.maven.spring.sound" />
-    
+    <!-- <bean id="compactDisc" class="com.ycf.maven.spring.sound.SgtPeppers" p:title="${title}" p:artist="${artist}"/> -->
+    <!-- <bean id="compactDisc" class="com.ycf.maven.spring.sound.SgtPeppers" p:title="#{systemProperties['title']}" p:artist="#{systemProperties['os.name']}"/> -->
+    <bean id="compactDisc" class="com.ycf.maven.spring.sound.SgtPeppers" p:title="#{systemProperties['title']}" p:artist="#{T(System).currentTimeMillis()}"/>
+    <!-- <context:component-scan base-package="com.ycf.maven.spring.sound" /> -->
+    <context:component-scan base-package="com.ycf.maven.spring" />
+    <!-- 启用xml 解析属性占位符 -->
+    <context:property-placeholder />
     <!-- <mvc:annotation-driven /> -->
 
+    <!-- <aop: scoped -proxy>是与@Scope注解的proxyMode属性功能相同的Spring XML配置元
+            素。它会告诉Spring为bean创建一个作用域代理。默认情况下，它会使用CGLib创建目标类的
+            代理。但是我们也可以将proxy-target-class属性设置为false，进而要求它生成基于
+            接口的代理: -->
     <!-- <bean id="cdPlayer" class="com.ycf.maven.spring.sound.CDPlayer">
         <constructor-arg ref="compactDisc"/>
+        <aop:scoped-proxy proxy-target-class="false"/>
     </bean> -->
 
     <!-- 在XML配置中引用JavaConfig -->
     <!-- <bean class="com.ycf.maven.spring.sound.CDPlayerConfig"/> -->
     <!-- 设置为首选bean 作用域为原型 -->
     <!-- <bean id="cdPlayer" class="com.ycf.maven.spring.sound.CDPlayer" c:cd-ref="compactDisc" primary="true" scope="prototype"/> -->
+
+    <!-- 启用aspectj自动代理 -->
+    <aop:aspectj-autoproxy />
 </beans>

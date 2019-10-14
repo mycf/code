@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 
 @Component
-// @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE) //原型
-@Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.INTERFACES)
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE) //原型作用域
+// @Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.INTERFACES)  //会话作用域
 public class CDPlayer implements MediaPlayer {
     private CompactDisc cd;
 
@@ -27,7 +27,7 @@ public class CDPlayer implements MediaPlayer {
     }
 
     @Autowired
-    @Qualifier("sgtPeppers")
+    // @Qualifier("sgtPeppers")
     public void setCompactDisc(CompactDisc cd) {
         this.cd = cd;
     }
