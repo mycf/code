@@ -15,6 +15,13 @@
     http://www.springframework.org/schema/mvc 
     http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
+
+    <!-- 启用aspectj自动代理 
+        默认jdk代理 
+        proxy-target-class="true" 启用cglib代理
+    -->
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+
     <!-- 没有明确指定id 使用全限定类名进行命名 com.ycf.maven.spring.sound.SgtPeppers#0 -->
     <!-- <bean class="com.ycf.maven.spring.sound.SgtPeppers" /> -->
 
@@ -44,6 +51,4 @@
     <!-- 设置为首选bean 作用域为原型 -->
     <!-- <bean id="cdPlayer" class="com.ycf.maven.spring.sound.CDPlayer" c:cd-ref="compactDisc" primary="true" scope="prototype"/> -->
 
-    <!-- 启用aspectj自动代理 -->
-    <aop:aspectj-autoproxy />
 </beans>
