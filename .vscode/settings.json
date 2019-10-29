@@ -3,5 +3,6 @@
     "maven.pomfile.autoUpdateEffectivePOM": true,
     "java.dependency.syncWithFolderExplorer": false,
     "java.dependency.showOutline": false,
+    "window.openFilesInNewWindow": true,
     "java.configuration.updateBuildConfiguration": "automatic"
 }
